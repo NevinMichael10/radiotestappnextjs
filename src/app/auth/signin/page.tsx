@@ -6,15 +6,15 @@
 
   const SignIn: React.FC = () => {
     const handleSignIn = (provider: string) => {
-      signIn(provider);
+      signIn(provider,{ callbackUrl: "/" });
     };
 
     return (
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          <div className="flex flex-wrap items-center h-screen">
-            <div className="hidden w-full xl:block xl:w-1/2">
-              <div className="px-26 py-17.5 text-center">
-                {/* <Link className="mb-5.5 inline-block" href="/">
+          <div className="flex flex-wrap items-center h-screen justify-center">
+            {/* <div className="hidden w-full xl:block xl:w-1/2"> */}
+              {/* <div className="px-26 py-17.5 text-center">
+                <Link className="mb-5.5 inline-block" href="/">
                   <Image
                     className="hidden dark:block"
                     src={"/images/logo/logo.svg"}
@@ -29,7 +29,7 @@
                     width={176}
                     height={32}
                   />
-                </Link> */}
+                </Link>
 
                 <p className="2xl:px-20">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit
@@ -158,10 +158,11 @@
                     />
                   </svg>
                 </span>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
 
-            <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
+            {/* <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2"> */}
+            <div className="w-full xl:w-1/2">
               <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
                 <span className="mb-1.5 block font-medium">Start for free</span>
                 <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
@@ -286,7 +287,7 @@
                     Sign in with Google
                   </button>
 
-                  <button onClick = { async () => await signIn('facebook')} className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">
+                  <button onClick={() => handleSignIn('facebook')} className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">
                     <span>
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
