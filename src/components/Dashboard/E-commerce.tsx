@@ -1,6 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import React from "react";
+import { useSession, signOut } from "next-auth/react";
 import ChartOne from "../Charts/ChartOne";
 import ChartTwo from "../Charts/ChartTwo";
 import ChatCard from "../Chat/ChatCard";
@@ -16,9 +17,38 @@ const ChartThree = dynamic(() => import("@/components/Charts/ChartThree"), {
 });
 
 const ECommerce: React.FC = () => {
+  // const { data: token, status } = useSession()
+  // console.log(token)
+  const { data: session } = useSession();
+  console.log("session",session?.idToken);
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+      <div className="mt-5">
+        <div className="flex items-center">
+          {session ? (
+            <>
+              <img
+                src={session.user?.image || '/default-profile.png'}
+                alt={session.user?.name || 'User'}
+                className="w-10 h-10 rounded-full"
+              />
+              <div className="ml-3">
+                <p className="text-lg font-semibold">{session.user?.name}</p>
+                <p className="text-sm text-gray-500">{session.user?.email}</p>
+              </div>
+              <button
+                onClick={() => signOut()}
+                className="ml-4 px-4 py-2 bg-blue-500 text-white rounded"
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <p>Please sign in to see user details.</p>
+          )}
+        </div>
+      </div>
         <CardDataStats title="Total views" total="$3.456K" rate="0.43%" levelUp>
           <svg
             className="fill-primary dark:fill-white"
